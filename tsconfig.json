@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+      "declaration": true,
+      "lib": [
+        "dom",
+        "es6",
+      ],
+      "moduleResolution": "node",
+      "noEmitOnError": true,
+      "noImplicitAny": false,
+      "removeComments": false,
+      "sourceMap": false,
+      "target": "es6",
+  },
+  "include": [
+      "./src/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "extends":"../tsconfig",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "../node_modules/dj-hello-world",
+  }
+}

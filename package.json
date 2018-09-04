@@ -1,0 +1,33 @@
+{
+  "name": "dj-hello-world-demo",
+  "version": "0.0.7",
+  "description": "Say hello world",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start:node && npm run start:browser",
+    "start:browser": "http-server -o -c-1",
+    "start:node": "node demo/node/index.js",
+    "build:all": "npm run build:cjs && npm run build:es",
+    "build:cjs": "tsc -p ./config/tsconfig.cjs.json",
+    "build:es": "tsc -p ./config/tsconfig.es.json",
+    "postbuild:all": "node postbuild.js",
+    "pack:all": "npm run pack:cjs && npm run pack:es",
+    "pack:cjs": "npm pack ./node_modules/dj-hello-world",
+    "pack:es": "npm pack ./node_modules/dj-hello-world-es",
+    "publish:all": "npm run publish:cjs && npm run publish:es",
+    "publish:cjs": "npm publish ./node_modules/dj-hello-world",
+    "publish:es": "npm publish ./node_modules/dj-hello-world-es",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dakota Jang",
+  "license": "ISC",
+  "devDependencies": {
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "dj-hello-world": "0.0.6",
+    "dj-hello-world-es": "0.0.6",
+    "http-server": "^0.11.1"
+  }
+}
