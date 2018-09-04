@@ -3,14 +3,14 @@ Demonstration of using single project to publish npm package for multiple builds
 
 ## Description
 This project attempts to use one source code to distribute multiple packages.
-By writing the source code in Typescript we can strongly type all of the defined functions. Also when compiling the Typescript code, we need to decide what module code generation to use. In this project the code is compiled to ```es6``` and ```commonjs```. Before publishing the package to NPM, we need write a ```package.json```. To avoid having to write and modify multiple ```package.json``` and ```README.md```, ```postbuild.js``` have been written to copy, stamp, and modify some parts of the templates and place them in the package folder.
+By writing the source code in Typescript we can strongly type all of the defined functions. Also when compiling the Typescript code, we need to decide what module code generation to use. In this project the code is compiled to ```esm``` and ```cjs``` using ```rollup.js```. Before publishing the package to NPM, we need write a ```package.json```. To avoid having to write and modify multiple ```package.json``` and ```README.md```, ```postbuild.js``` have been written to copy, stamp, and modify some parts of the templates and place them in the package folder.
 
 ## Key Structure
-- ```config``` - Contains all of the tsconfig files for each module code generation.
 - ```src``` - Contains all your source code
 - ```templates``` - Contains template files for your packages, such as ```README.md``` and ```package.json```.
 - ```package.json``` - Define all your build, pack, publish instructions here.
 - ```postbuild.js``` - Here we defines the instructions for copying and stamping the templates to the build folder. Hopefully in the future we have a package for this so that we can use a configuration file instead writing a entire script for copying files.
+- ```rollup.config.js``` - Contains rules for each out format (iife/cjs/esm).
 
 ## Build
 To avoid building on top of redundant files from previous build, delete ```packages``` folder.
