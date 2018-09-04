@@ -1,4 +1,4 @@
-import { Language } from "./language.js";
+import { Language } from "./language";
 
 let helloWorld = function() {
   return 'Hello World!';

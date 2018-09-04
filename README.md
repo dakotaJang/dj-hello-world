@@ -13,10 +13,10 @@ By writing the source code in Typescript we can strongly type all of the defined
 - ```postbuild.js``` - Here we defines the instructions for copying and stamping the templates to the build folder. Hopefully in the future we have a package for this so that we can use a configuration file instead writing a entire script for copying files.
 
 ## Build
-To avoid building on top of redundant files from previous build, delete previous build in the ```node_modules```
+To avoid building on top of redundant files from previous build, delete ```packages``` folder.
 To build the packages, run:
 ```
-npm run build:all
+npm run build
 ```
 
 ## Publish
@@ -28,8 +28,23 @@ npm run publish:all
 ## Using the Package
 Before anything we should install the dependencies:
 ```
-npm i dj-hello-world dj-hello-world-es
+npm i dj-hello-world dj-hello-world-es dj-hello-world-iife
 ```
+
+### Via script tag
+Write a html file importing the script.
+```html
+<script src="node_modules/dj-hello-world-iife/index.js"></script>
+```
+After importing the script you can use the global variable ```DJ_Hello_World```.
+```html
+<script>
+  let world = new DJ_Hello_World.World();
+  world.sayHello();
+</script>
+```
+Check the printed messages in the console from browser's Developer Tools tab.
+
 ### ES module
 Add the following script as ```type="module"``` in a html file.
 ```js
@@ -43,7 +58,7 @@ newWorld.sayHello();
 ```
 Check the printed messages in the console from browser's Developer Tools tab.
 
-### Node
+### Node.js
 Node.js uses CommonJS for managing packages. Meaning it uses the ```require``` function to import the packages. Run the following script in node.js.
 ```js
 const djHelloWorld = require("dj-hello-world");

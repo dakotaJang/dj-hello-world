@@ -148,9 +148,16 @@ main = ()=>{
       action: 'dj-hello-world-es'
     }
   ];
+  let renameIFFE = [
+    {
+      key:"name",
+      action: 'dj-hello-world-iife'
+    }
+  ];
 
-  copy_package_json('package.json','node_modules/dj-hello-world/package.json',['scripts','devDependencies','dependencies'],renameCjs)
-  copy_package_json('package.json','node_modules/dj-hello-world-es/package.json',['scripts','devDependencies','dependencies'],renameES)
+  copy_package_json('package.json','packages/dj-hello-world/package.json',['scripts','devDependencies','dependencies'],renameCjs)
+  copy_package_json('package.json','packages/dj-hello-world-es/package.json',['scripts','devDependencies','dependencies'],renameES)
+  copy_package_json('package.json','packages/dj-hello-world-iife/package.json',['scripts','devDependencies','dependencies'],renameIFFE)
 
   let fillInPlaceholdersES = [
     {
@@ -165,7 +172,8 @@ main = ()=>{
       key:"{{prefix}}",
       action: "-es"
     }
-  ]
+  ];
+
   let fillInPlaceholdersCjs = [
     {
       key:"{{module}}",
@@ -175,8 +183,25 @@ main = ()=>{
       key:"{{prefix}}",
       action: ""
     }
-  ]
-  copy_README_md('templates/README.md','node_modules/dj-hello-world/README.md',["ES module"],fillInPlaceholdersCjs);
-  copy_README_md('templates/README.md','node_modules/dj-hello-world-es/README.md',["Node"],fillInPlaceholdersES);
+  ];
+
+  let fillInPlaceholdersIife = [
+    {
+      key:"# DJ Hello World",
+      action: "# DJ Hello World - IIFE"
+    },
+    {
+      key:"{{module}}",
+      action: "IIFE"
+    },
+    {
+      key:"{{prefix}}",
+      action: "-iife"
+    }
+  ];
+
+  copy_README_md('templates/README.md','packages/dj-hello-world/README.md',["ES module","Via script tag"],fillInPlaceholdersCjs);
+  copy_README_md('templates/README.md','packages/dj-hello-world-es/README.md',["Node","Via script tag"],fillInPlaceholdersES);
+  copy_README_md('templates/README.md','packages/dj-hello-world-iife/README.md',["ES module","Node"],fillInPlaceholdersIife);
 }
 main();

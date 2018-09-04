@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script src="../../../node_modules/dj-hello-world-iife/index.js"></script>
 </head>
 <body>
   <script>
@@ -18,7 +19,7 @@
     console.log = newLog;
   </script>
   <script type="module">
-    import { helloWorld, World, Language } from "../../node_modules/dj-hello-world-es/index.js";
+    import { helloWorld, World, Language } from "../../../node_modules/dj-hello-world-es/index.js";
 
     console.log(helloWorld());
     const newWorld = new World();
