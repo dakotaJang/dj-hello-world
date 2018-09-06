@@ -1,4 +1,5 @@
 import { Language } from "./language";
+import * as _ from "lodash-es";
 
 let helloWorld = function() {
   return 'Hello World!';
@@ -33,6 +34,11 @@ export class World {
       return phrase;
   }
   setLanguage(lang: Language){
-      this.language = lang;
+    this.language = lang;
+  }
+  supportedLanguages() {
+    const languages = _.values(Language).filter(x => typeof (x) === "string");
+    console.log("Supported languages: ", languages);
+    return languages;
   }
 }

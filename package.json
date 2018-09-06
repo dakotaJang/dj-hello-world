@@ -1,8 +1,9 @@
 {
   "name": "dj-hello-world-demo",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Say hello world",
   "main": "index.js",
+  "module": "index.esm.js",
   "scripts": {
     "start": "npm run start:node && npm run start:browser",
     "start:browser": "http-server -p 3000 -o -c-1",
@@ -12,29 +13,30 @@
     "start:local:node": "node demo/local/node/index.js",
     "build": "rollup -c",
     "postbuild": "node postbuild.js",
-    "pack:all": "npm run pack:cjs && npm run pack:es && npm run pack:iife",
-    "pack:cjs": "npm pack ./packages/dj-hello-world",
+    "pack:all": "npm run pack:umd && npm run pack:es",
+    "pack:umd": "npm pack ./packages/dj-hello-world",
     "pack:es": "npm pack ./packages/dj-hello-world-es",
-    "pack:iife": "npm pack ./packages/dj-hello-world-iife",
-    "publish:all": "npm run publish:cjs && npm run publish:es && npm run publish:iife",
-    "publish:cjs": "npm publish ./packages/dj-hello-world",
+    "publish:all": "npm run publish:umd && npm run publish:es",
+    "publish:umd": "npm publish ./packages/dj-hello-world",
     "publish:es": "npm publish ./packages/dj-hello-world-es",
-    "publish:iife": "npm publish ./packages/dj-hello-world-iife",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dakota Jang",
   "license": "ISC",
   "devDependencies": {
-    "dj-hello-world": "0.0.9",
-    "dj-hello-world-es": "0.0.9",
-    "dj-hello-world-iife": "0.0.9",
+    "dj-hello-world": "0.0.10",
+    "dj-hello-world-es": "0.0.10",
     "http-server": "^0.11.1",
     "rollup": "^0.65.0",
+    "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-typescript2": "^0.17.0",
     "tsc": "^1.20150623.0",
     "typescript": "^3.0.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash-es": "^4.17.10"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dakotaJang/dj-hello-world.git"

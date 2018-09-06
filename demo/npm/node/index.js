@@ -16,3 +16,5 @@ newWorld.sayHello();
 
 newWorld.setLanguage(Language.Spanish);
 newWorld.sayHello();
+
+newWorld.supportedLanguages();

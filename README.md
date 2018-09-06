@@ -34,7 +34,10 @@ npm i dj-hello-world dj-hello-world-es dj-hello-world-iife
 ### Via script tag
 Write a html file importing the script.
 ```html
-<script src="node_modules/dj-hello-world-iife/index.js"></script>
+<!-- you can import from node_modules -->
+<script src="node_modules/dj-hello-world/index.js"></script>
+<!-- or import from unpkg -->
+<script src="https://unpkg.com/dj-hello-world@0.0.10/index.js"></script>
 ```
 After importing the script you can use the global variable ```DJ_Hello_World```.
 ```html
@@ -48,7 +51,7 @@ Check the printed messages in the console from browser's Developer Tools tab.
 ### ES module
 Add the following script as ```type="module"``` in a html file.
 ```js
-import { World, Language } from "node_modules/dj-hello-world-es/index.js";
+import { World, Language } from "node_modules/dj-hello-world/index.esm.js";
 
 const newWorld = new World();
 newWorld.sayHello();
@@ -90,16 +93,34 @@ npm start
 ```
 Should see meaningful messages in the consoles.
 
-### Browser
-Run the following command
+### Start via node_modules
+First install the dependencies:
+```
+npm i
+```
+Run the following command:
+for browser:
 ```
 npm run start:browser
 ```
-Should see meaningful messages on the page and in the devtool console.
-
-### Node
-Run the following command
+for node:
 ```
 npm run start:node
+```
+Should see meaningful messages in console.
+
+### Start via local build
+Create a build (for clean build, delete ```packages``` folder)
+```
+npm run build
+```
+Run the following command:
+for browser:
+```
+npm run start:local:browser
+```
+for node:
+```
+npm run start:local:node
 ```
 Should see meaningful messages in console.

@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <base href="/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="../../../packages/dj-hello-world-iife/index.js"></script>
+  <title>DJ Hello World</title>
+  <script src="demo/script/log.js"></script>
+  <script src="packages/dj-hello-world/index.js"></script>
 </head>
 <body>
-  <script>
-    let oldLog = console.log;
-    let newLog = (s) => {
-      let log = document.createElement('pre');
-      log.innerHTML = s;
-      document.body.appendChild(log)
-      oldLog(s);
-    }
-    console.log = newLog;
-  </script>
   <script type="module">
-    import { helloWorld, World, Language } from "../../../packages/dj-hello-world-es/index.js";
+    import { helloWorld, World, Language } from "/packages/dj-hello-world/index.esm.js";
 
     console.log(helloWorld());
     const newWorld = new World();
@@ -33,6 +25,8 @@
 
     newWorld.setLanguage(Language.Spanish);
     newWorld.sayHello();
+
+    newWorld.supportedLanguages();
   </script>
 </body>
 </html>

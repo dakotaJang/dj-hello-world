@@ -1,4 +1,4 @@
-var fs = require('fs');
+const fs = require('fs');
 
 readFile = (path) => {
   return new Promise((resolve,reject)=>
@@ -136,30 +136,47 @@ copy_README_md = (src,dest,filters,modifiers) => {
 }
 
 main = ()=>{
-  let renameCjs = [
+  // for package.json
+  const renameAll = [
     {
       key:"name",
       action: 'dj-hello-world'
     }
   ];
-  let renameES = [
+  const renameES = [
     {
       key:"name",
       action: 'dj-hello-world-es'
+    },
+    {
+      key: "module",
+      action: "index.js"
     }
   ];
-  let renameIFFE = [
+  const renameUMD = [
     {
       key:"name",
-      action: 'dj-hello-world-iife'
+      action: 'dj-hello-world-umd'
     }
   ];
 
-  copy_package_json('package.json','packages/dj-hello-world/package.json',['scripts','devDependencies','dependencies'],renameCjs)
-  copy_package_json('package.json','packages/dj-hello-world-es/package.json',['scripts','devDependencies','dependencies'],renameES)
-  copy_package_json('package.json','packages/dj-hello-world-iife/package.json',['scripts','devDependencies','dependencies'],renameIFFE)
+  // for README.md
+  const fillInPlaceholdersAll = [
+    {
+      key:"{{module}}",
+      action: "UMD and ES modules"
+    },
+    {
+      key:"{{prefix}}",
+      action: ""
+    },
+    {
+      key:"{{file-prefix}}",
+      action: ".esm"
+    }
+  ];
 
-  let fillInPlaceholdersES = [
+  const fillInPlaceholdersES = [
     {
       key:"# DJ Hello World",
       action: "# DJ Hello World - ES module"
@@ -171,37 +188,34 @@ main = ()=>{
     {
       key:"{{prefix}}",
       action: "-es"
-    }
-  ];
-
-  let fillInPlaceholdersCjs = [
-    {
-      key:"{{module}}",
-      action: "Common JS"
     },
     {
-      key:"{{prefix}}",
+      key:"{{file-prefix}}",
       action: ""
     }
   ];
 
-  let fillInPlaceholdersIife = [
+  const fillInPlaceholdersUMD = [
     {
       key:"# DJ Hello World",
-      action: "# DJ Hello World - IIFE"
+      action: "# DJ Hello World - UMD"
     },
     {
       key:"{{module}}",
-      action: "IIFE"
+      action: "UMD"
     },
     {
       key:"{{prefix}}",
-      action: "-iife"
+      action: "-umd"
     }
   ];
 
-  copy_README_md('templates/README.md','packages/dj-hello-world/README.md',["ES module","Via script tag"],fillInPlaceholdersCjs);
+  copy_package_json('package.json','packages/dj-hello-world/package.json',['scripts','devDependencies'],renameAll);
+  copy_package_json('package.json','packages/dj-hello-world-es/package.json',['scripts','devDependencies'],renameES);
+  // copy_package_json('package.json','packages/dj-hello-world-umd/package.json',['scripts','devDependencies','module'],renameUMD);
+
+  copy_README_md('templates/README.md','packages/dj-hello-world/README.md',[],fillInPlaceholdersAll);
   copy_README_md('templates/README.md','packages/dj-hello-world-es/README.md',["Node","Via script tag"],fillInPlaceholdersES);
-  copy_README_md('templates/README.md','packages/dj-hello-world-iife/README.md',["ES module","Node"],fillInPlaceholdersIife);
+  // copy_README_md('templates/README.md','packages/dj-hello-world-umd/README.md',["ES module","Via script tag"],fillInPlaceholdersUMD);
 }
 main();

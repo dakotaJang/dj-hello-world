@@ -14,7 +14,7 @@ npm i dj-hello-world{{prefix}}
 ### Via script tag
 Write a html file importing the script.
 ```html
-<script src="node_modules/dj-hello-world-iife/index.js"></script>
+<script src="node_modules/dj-hello-world/index.js"></script>
 ```
 After importing the script you can use the global variable ```DJ_Hello_World```.
 ```html
@@ -28,7 +28,7 @@ Check the printed messages in the console from browser's Developer Tools tab.
 ### ES module
 Add the following script as ```type="module"``` in a html file.
 ```js
-import { World, Language } from "node_modules/dj-hello-world-es/index.js";
+import { World, Language } from "/node_modules/dj-hello-world{{prefix}}/index{{file-prefix}}.js";
 
 const newWorld = new World();
 newWorld.sayHello();
@@ -41,7 +41,7 @@ Check the printed messages in the console from browser's Developer Tools tab.
 ### Node
 Node.js uses CommonJS for managing packages. Meaning it uses the ```require``` function to import the packages. Run the following script in node.js.
 ```js
-const djHelloWorld = require("dj-hello-world");
+const djHelloWorld = require("dj-hello-world{{prefix}}");
 const helloWorld = djHelloWorld.helloWorld;
 const World = djHelloWorld.World;
 const Language = djHelloWorld.Language;
