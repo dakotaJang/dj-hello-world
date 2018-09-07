@@ -1,12 +1,11 @@
 import { Language } from "./language";
-import * as _ from "lodash-es";
+import { default as values } from "lodash-es/values";
 
 let helloWorld = function() {
   return 'Hello World!';
 }
 
-export {helloWorld}
-export class World {
+class World {
   constructor(){
       console.log(`
       Created new World
@@ -37,8 +36,10 @@ export class World {
     this.language = lang;
   }
   supportedLanguages() {
-    const languages = _.values(Language).filter(x => typeof (x) === "string");
+    const languages = values(Language).filter(x => typeof (x) === "string");
     console.log("Supported languages: ", languages);
     return languages;
   }
 }
+
+export { helloWorld, World }

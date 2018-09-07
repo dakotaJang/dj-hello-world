@@ -1,6 +1,6 @@
 {
   "name": "dj-hello-world-demo",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Say hello world",
   "main": "index.js",
   "module": "index.esm.js",
@@ -24,8 +24,8 @@
   "author": "Dakota Jang",
   "license": "ISC",
   "devDependencies": {
-    "dj-hello-world": "0.0.10",
-    "dj-hello-world-es": "0.0.10",
+    "dj-hello-world": "0.0.11",
+    "dj-hello-world-es": "0.0.11",
     "http-server": "^0.11.1",
     "rollup": "^0.65.0",
     "rollup-plugin-commonjs": "^9.1.6",

@@ -40,6 +40,7 @@ writeFile = (path, data)=>{
   .then(fd => writeFileDescriptor(fd,data))
   .then(fd => closeFileDescriptor(fd))
   .catch(err=>console.log(err));
+  return data;
 }
 
 filter_package_json = (data,filters) => {
@@ -74,11 +75,12 @@ modify_package_json = (data,modifiers) => {
   }
 }
 
-copy_package_json = (src,dest,filters,modifiers) => {
-  readFile(src)
+copy_package_json = async (src,dest,filters,modifiers) => {
+  let package_json = await readFile(src)
   .then(data => filter_package_json(data,filters))
   .then(data => modify_package_json(data,modifiers))
-  .then(data => writeFile(dest,data))
+  .then(data => writeFile(dest,data));
+  return JSON.parse(package_json);
 }
 
 // filters by header labels (headers in the document will have to be unique or this will only remove the first occurrence)
@@ -135,7 +137,7 @@ copy_README_md = (src,dest,filters,modifiers) => {
   .then(data => writeFile(dest,data))
 }
 
-main = ()=>{
+main = async () => {
   // for package.json
   const renameAll = [
     {
@@ -160,6 +162,10 @@ main = ()=>{
     }
   ];
 
+  let package_json = await copy_package_json('package.json','packages/dj-hello-world/package.json',['scripts','devDependencies'],renameAll);
+  copy_package_json('package.json','packages/dj-hello-world-es/package.json',['scripts','devDependencies'],renameES);
+  // copy_package_json('package.json','packages/dj-hello-world-umd/package.json',['scripts','devDependencies','module'],renameUMD);
+
   // for README.md
   const fillInPlaceholdersAll = [
     {
@@ -173,7 +179,11 @@ main = ()=>{
     {
       key:"{{file-prefix}}",
       action: ".esm"
-    }
+    },
+    {
+      key:"{{version}}",
+      action: package_json.version
+    },
   ];
 
   const fillInPlaceholdersES = [
@@ -207,12 +217,12 @@ main = ()=>{
     {
       key:"{{prefix}}",
       action: "-umd"
-    }
+    },
+    {
+      key:"{{version}}",
+      action: package_json.version
+    },
   ];
-
-  copy_package_json('package.json','packages/dj-hello-world/package.json',['scripts','devDependencies'],renameAll);
-  copy_package_json('package.json','packages/dj-hello-world-es/package.json',['scripts','devDependencies'],renameES);
-  // copy_package_json('package.json','packages/dj-hello-world-umd/package.json',['scripts','devDependencies','module'],renameUMD);
 
   copy_README_md('templates/README.md','packages/dj-hello-world/README.md',[],fillInPlaceholdersAll);
   copy_README_md('templates/README.md','packages/dj-hello-world-es/README.md',["Node","Via script tag"],fillInPlaceholdersES);

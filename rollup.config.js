@@ -39,7 +39,7 @@ export default [
       format: 'esm',
       file: 'packages/dj-hello-world-es/index.js',
     },
-    external: ['lodash-es']
+    external: ['lodash-es/values']
   }),
   // config({
   //   output: {

@@ -37,7 +37,7 @@ Write a html file importing the script.
 <!-- you can import from node_modules -->
 <script src="node_modules/dj-hello-world/index.js"></script>
 <!-- or import from unpkg -->
-<script src="https://unpkg.com/dj-hello-world@0.0.10/index.js"></script>
+<script src="https://unpkg.com/dj-hello-world@0.0.11/index.js"></script>
 ```
 After importing the script you can use the global variable ```DJ_Hello_World```.
 ```html

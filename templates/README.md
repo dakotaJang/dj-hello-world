@@ -14,7 +14,10 @@ npm i dj-hello-world{{prefix}}
 ### Via script tag
 Write a html file importing the script.
 ```html
+<!-- you can import from node_modules -->
 <script src="node_modules/dj-hello-world/index.js"></script>
+<!-- or import from unpkg -->
+<script src="https://unpkg.com/dj-hello-world@{{version}}/index.js"></script>
 ```
 After importing the script you can use the global variable ```DJ_Hello_World```.
 ```html
