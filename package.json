@@ -1,6 +1,6 @@
 {
   "name": "dj-hello-world-demo",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Say hello world",
   "main": "index.js",
   "module": "index.esm.js",
@@ -12,7 +12,7 @@
     "start:local:browser": "http-server -p 8080 -o -c-1",
     "start:local:node": "node demo/local/node/index.js",
     "build": "rollup -c",
-    "postbuild": "node postbuild.js",
+    "postbuild": "stamp-pkg",
     "pack:all": "npm run pack:umd && npm run pack:es",
     "pack:umd": "npm pack ./packages/dj-hello-world",
     "pack:es": "npm pack ./packages/dj-hello-world-es",
@@ -24,13 +24,14 @@
   "author": "Dakota Jang",
   "license": "ISC",
   "devDependencies": {
-    "dj-hello-world": "0.0.11",
-    "dj-hello-world-es": "0.0.11",
+    "dj-hello-world": "0.0.12",
+    "dj-hello-world-es": "0.0.12",
     "http-server": "^0.11.1",
     "rollup": "^0.65.0",
     "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-typescript2": "^0.17.0",
+    "stamp-pkg": "0.0.1",
     "tsc": "^1.20150623.0",
     "typescript": "^3.0.3"
   },
